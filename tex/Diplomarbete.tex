@@ -1,0 +1,59 @@
+% Metadata för PDF/A
+\begin{filecontents*}{\jobname.xmpdata}
+	\Title{TitelTitel Titel}
+	\Author{Förnamn Efternamn}
+	\Language{sv-SE}
+	\Keywords{hepp\sep hepp\sep hepp\sep hepp}
+	\Publisher{Åbo Akademi}
+\end{filecontents*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,12pt,hidelinks]{article}
+\usepackage[left=4.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}
+
+\input{Preamble}
+
+% Används av titelsidan
+\author{TitelTitel Titel}
+\date{\today}
+\title{Förnamn Efternamn}
+
+\begin{document}
+
+% För att matcha di_direktiv.pdf
+\pagenumbering{roman}
+
+\include{Titelsida}
+\setcounter{page}{1}
+
+% Abstrakt
+% \include{Sammanfattning}
+
+\tableofcontents
+\newpage
+
+\printglossary{}
+\newpage
+
+% Vanliga sidnummer efter förorden etc
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% Resten av texten med lite stretchat radavstånd
+\renewcommand{\baselinestretch}{1.3}\normalsize
+
+% Genom att sätta TEXINPUTS i .latexmkrc kan vi här includa filer utan att ha med hela pathen
+
+\include{Inledning}
+% Bakgrund här ...
+% \include{Problembeskrivning}
+% Avhandling ...
+% \include{Resultat}
+% \include{Diskussion}
+% \include{Slutord}
+
+% Ändrad titel för att matcha di_direktiv.pdf, bibintoc ger den i
+\printbibliography[heading=bibintoc]{}
+
+\end{document}

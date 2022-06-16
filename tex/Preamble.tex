@@ -1,0 +1,62 @@
+% Peruspaket
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+% Paket som skapar PDF/A
+\usepackage[a-1b,mathxmp]{pdfx}
+% Viktigt för PDF/A om du använder EPS-bilder, tar bort färger som int funkar
+\usepackage{epstopdf}
+\epstopdfDeclareGraphicsRule{.eps}{pdf}{.pdf}{%
+    epstopdf --gsopt=-sColorConversionStrategy=Gray --gsopt=-dProcessColorModel=/DeviceGray --gsopt=-dCompatibilityLevel=1.4 #1 --outfile=\OutputFile}
+
+% Nyare sätt att sätta språket
+\usepackage{polyglossia}
+\setdefaultlanguage{swedish}
+
+% Custom typsnitt
+% https://tex.stackexchange.com/questions/59702/suggest-a-nice-font-family-for-my-basic-latex-template-text-and-math
+\usepackage{unicode-math}
+%\setmainfont{EB Garamond}
+%\setmathfont{Garamond-Math}
+
+% Jättebra paket som låter en ha subfigures
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{\,(\alph{subfigure})}
+\renewcommand\thesubtable{\,(\alph{subfigure})}
+
+% För titelsidan, några extra makron
+\usepackage{titling}
+
+% Biblatex - enklare att använda än plain bibtex, stöder utf-8 etc
+\usepackage[
+	backend=biber,
+	style=ieee,
+	eprint=false,
+	isbn=false,
+	maxnames=2,
+	minnames=1
+]{biblatex}
+\addbibresource{Diplomarbete.bib}
+
+% För ordlistor
+\usepackage{glossaries-extra}
+
+% Skapar ordlistor
+\makeglossaries
+
+% Kursivt när förkortning skrivs ut
+\renewcommand{\glsfirstlongdefaultfont}[1]{\emph{#1}}
+\input{Ordlista}
+
+% di_direktiv.pdf: enkelt radavstånd mellan stycken, indrag 0.4 cm
+\setlength\parindent{0.4cm}
+
+% di_direkt.pdf: fontstorlek på sektioner
+\usepackage{sectsty}
+\sectionfont{\large}
+\subsectionfont{\normalsize}
+\subsubsectionfont{\itshape\normalsize}
+
+% di_direktiv.pdf: sidnummer i hörnet
+\usepackage{scrlayer-scrpage}
+\ohead*{\pagemark}
