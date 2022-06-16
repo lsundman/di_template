@@ -1,1 +1,3 @@
-# di_template
+# DI template
+
+Kör `latexmk` i rooten.
